@@ -605,7 +605,7 @@ class App(tk.Tk):
         cy = self.canvas.canvasy(e.y)
 
         if self.hand_mode:
-            self.pan_start = (e.x, e.y)
+            self.canvas.scan_mark(e.x, e.y)
             return
 
         x, y = self.snap(cx, cy)
@@ -624,12 +624,8 @@ class App(tk.Tk):
         if not self.doc:
             return
             
-        if self.hand_mode and self.pan_start:
-            dx = self.pan_start[0] - e.x
-            dy = self.pan_start[1] - e.y
-            self.canvas.xview_scroll(int(dx), "units")
-            self.canvas.yview_scroll(int(dy), "units")
-            self.pan_start = (e.x, e.y)
+        if self.hand_mode:
+            self.canvas.scan_dragto(e.x, e.y, gain=1)
             return
 
         if not self.start:
@@ -671,7 +667,6 @@ class App(tk.Tk):
 
     def up(self, e):
         if self.hand_mode:
-            self.pan_start = None
             return
 
         # Handle shape creation on release
