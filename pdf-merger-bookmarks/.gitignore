@@ -1,0 +1,10 @@
+node_modules/
+dist/*
+!dist/pdf_merger_bookmarks_v2.0.0.html
+!dist/pdf_merger_bookmarks_v2.0.0.html.sha256
+tests/fixtures/
+tmp/pdfs/*
+output/pdf/*
+!tmp/pdfs/.gitkeep
+!output/pdf/.gitkeep
+*.log
